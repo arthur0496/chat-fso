@@ -12,7 +12,7 @@ void* send_message(void *arg){
     char *full_message = (char*)malloc(sizeof(char)*FULL_MESSAGE_SIZE);
     char *reciver = (char*)malloc(sizeof(char)*(NAME_SIZE));
     char *reciver_file = (char*)malloc(sizeof(char)*(NAME_SIZE+FILE_PREFIX_SIZE));
-    
+
     strcpy(full_message,sender);
     strcat(full_message,":");
     char aux[FULL_MESSAGE_SIZE];
@@ -45,11 +45,11 @@ void* send_message(void *arg){
     }
     if(verify_user(reciver) != -1){
         printf("UNKNOWNUSER %s\n",reciver);
-        free(full_message);        
+        free(full_message);
         return NULL;
     }
-    
-    
+
+
     strcat(full_message,aux);
     strcat(full_message,"\n");
 
@@ -61,7 +61,7 @@ void* send_message(void *arg){
 }
 void send_one_message(char* full_message,char* reciver_file){
     mqd_t queue;
-    struct mq_attr attr; 
+    struct mq_attr attr;
     attr.mq_maxmsg = MAX_MESSAGES;
     attr.mq_msgsize = sizeof(char)*FULL_MESSAGE_SIZE;
     attr.mq_flags = 0;
@@ -92,7 +92,7 @@ void* recive_message(void *arg){
     char *queue_name = (char*)arg;
 
     mqd_t queue;
-    struct mq_attr attr; 
+    struct mq_attr attr;
     attr.mq_maxmsg = MAX_MESSAGES;
     attr.mq_msgsize = sizeof(char)*FULL_MESSAGE_SIZE;
     attr.mq_flags = 0;
@@ -112,7 +112,7 @@ void* recive_message(void *arg){
         char sender[NAME_SIZE];
         char message[MESSAGE_SIZE];
         char aux5[NAME_SIZE+13] = "Broadcast de ";
-        printf("%s\n",recived_message);
+        // printf("%s\n",recived_message);
         strcpy(sender,strtok(recived_message,separator));
         strcat(aux5,sender);
         if(!strcmp(strtok(NULL,separator),"all")){
@@ -126,7 +126,7 @@ void* recive_message(void *arg){
         strcat(formated_message," ");
         strcat(formated_message,message);
 
-        printf("<- %s\n", formated_message);
+        printf("<- %s", formated_message);
     }
 
 

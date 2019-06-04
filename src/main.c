@@ -15,7 +15,7 @@ int main(){
     message_to_send *mts = (message_to_send*)malloc(sizeof(message_to_send));
     while(1){
         pthread_t send_id;
-        scanf("%s",message);
+        scanf("%[^\n]%*c",message);
         if(!strcmp(message,"sair")){
             break;
         }
@@ -25,7 +25,7 @@ int main(){
         else{
             mts->message = message;
             mts->sender =my_user.name;
-            pthread_create(&send_id, NULL, send_message, (void*)mts);            
+            pthread_create(&send_id, NULL, send_message, (void*)mts);
             sem_wait(&mutex);
         }
 

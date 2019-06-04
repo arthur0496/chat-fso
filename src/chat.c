@@ -6,6 +6,7 @@ void enter_chat(){
     do{
         printf("digite seu nickname:\n");
         scanf("%s",aux);
+        getchar(); //clear trailing newline character
         is_name_valid = verify_user(aux);
         if(is_name_valid == -1){
             printf("ERRO: O nickname %s ja esta em uso\n",aux);
@@ -19,7 +20,7 @@ void enter_chat(){
     strcat(my_user.file,aux);
 
     mqd_t queue;
-    struct mq_attr attr; 
+    struct mq_attr attr;
     attr.mq_maxmsg = MAX_MESSAGES;
     attr.mq_msgsize = sizeof(char)*FULL_MESSAGE_SIZE;
     attr.mq_flags = 0;
