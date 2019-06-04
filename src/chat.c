@@ -6,7 +6,7 @@ void enter_chat(){
     do{
         printf("digite seu nickname:\n");
         scanf("%s",aux);
-        //verify
+        is_name_valid = verify_user(aux);
     }while(!is_name_valid);
     strcpy(my_user.name,aux);
     strcpy(my_user.file,FILE_PREFIX);

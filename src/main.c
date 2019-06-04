@@ -5,7 +5,7 @@ void ctrl_c(int sig){
 }
 
 int main(){
-    signal(SIGINT, ctrl_c);
+    // signal(SIGINT, ctrl_c);
     enter_chat();
     list_online_users();
     exit_chat();

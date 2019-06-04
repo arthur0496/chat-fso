@@ -29,7 +29,7 @@ typedef struct user_{
 }user;
 
 struct dirent** get_all_queues();
-void verify_user(char* user);
+int verify_user(char* user);
 void list_online_users();
 
 
