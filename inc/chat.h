@@ -3,7 +3,7 @@
 
 #define CHAT_H
 
-#include "user.h"
+#include "message.h"
 
 user my_user;
 

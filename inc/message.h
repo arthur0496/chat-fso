@@ -2,10 +2,21 @@
 
 #define MESSAGE_H
 #define MESSAGE_SIZE 500
+#define FULL_MESSAGE_SIZE 522
+#define MAX_MESSAGES 10
 
-void create_message();
-void send_message();
-void send_message_to_all();
-void recive_message();
+#include "user.h"
+
+typedef struct _message_to_send{
+    char* message;
+    char* sender;
+}message_to_send;
+
+
+sem_t mutex;
+
+void* send_message(void *arg);
+void send_one_message(char* full_message,char* reciver_file);
+void* recive_message(void *arg);
 
 #endif

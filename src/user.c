@@ -36,6 +36,12 @@ int verify_user(char* user_name){
         printf("ERRO: Nickname muito grade(max: %d)\n",NAME_SIZE);
         return 0;
     }
+
+    if(!strcmp(user_name,"all")){
+        printf("ERRO: Nickname \"all\" nao e valido\n",NAME_SIZE);
+        return 0;
+    }
+
     int queue_size;
     struct dirent** queue_list = get_all_queues(&queue_size);
     char *aux = (char*)malloc(sizeof(char)*(NAME_SIZE+FILE_PREFIX_SIZE));    
@@ -44,9 +50,7 @@ int verify_user(char* user_name){
         free(queue_list[i]);
         if(strlen(aux) >= FILE_PREFIX_SIZE){
             if(!strcmp(&aux[FILE_PREFIX_SIZE-1],user_name)){
-                printf("**%s - %s**\n", user_name,aux);
-                printf("ERRO: O nickname %s ja esta em uso\n",user_name);
-                return 0;
+                return -1;
             }
         }
     }

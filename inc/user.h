@@ -22,6 +22,7 @@
 #include<signal.h>
 #include <errno.h>
 #include <dirent.h>
+#include <semaphore.h> 
 
 typedef struct user_{
     char name[NAME_SIZE];
